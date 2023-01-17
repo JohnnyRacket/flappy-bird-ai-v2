@@ -22,11 +22,6 @@ while not quit:
     start_time = time.time()
     img = screenshot(game_bbox)       
 
-
-
-
-
-
     cv2.putText(img, str(int(1.0 / (time.time() - start_time))), (260, 20), cv2.FONT_HERSHEY_SIMPLEX, .8, (0,0,255), 2, cv2.LINE_AA )
     
     cv2.imshow("Debug Classifiers", img)
