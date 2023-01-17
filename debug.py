@@ -1,12 +1,16 @@
 import win32gui
+import win32con
 import cv2
 import time
+import webbrowser
 from capture_screen import screenshot
 
 print('start debug')
+
+webbrowser.get('C:/Program Files/Google/Chrome/Application/chrome.exe %s').open('https://flappybird.ee/old')
 hwnd = win32gui.FindWindow(None, "Play Flappy Bird Online Old - Google Chrome")
 win32gui.MoveWindow(hwnd, -8, 0, 700, 616, True)
-win32gui.ShowWindow(hwnd, 5)
+win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
 win32gui.SetForegroundWindow(hwnd)
 bbox = win32gui.GetWindowRect(hwnd)
 print(bbox)
