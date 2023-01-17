@@ -13,9 +13,9 @@ from GamestateNet import GamestateClassifierNet
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 print(device)
 
-dataset = GamestateClassifierDataset(csv_file='gamestate_classifier_labels.csv', root_dir = 'gamestate_classifier_imgs', transform = transforms.Compose(
+dataset = GamestateClassifierDataset(csv_file='flappy_bird_gamestate_labels.csv', root_dir = 'gamestate_classifier_imgs', transform = transforms.Compose(
     [transforms.ToTensor(),
-     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))]))
+     transforms.Normalize((0.5), (0.5))]))
 print(len(dataset))
 in_channel = 1
 num_classes = 4
@@ -25,12 +25,12 @@ batch_size = 32
 num_epochs = 1000
 
 
-trainset, testset = torch.utils.data.random_split(dataset, [320, 57])
+trainset, testset = torch.utils.data.random_split(dataset, [480, 121])
 trainloader = torch.utils.data.DataLoader(dataset=trainset, batch_size=batch_size, shuffle=True)
 testloader = torch.utils.data.DataLoader(dataset=testset, batch_size=batch_size, shuffle=True) 
 
 
-classes = ('nothing', 'left', 'right', 'center')
+classes = ('title_screen', 'playing', 'game_over')
 
 gamestateClassifierNet = GamestateClassifierNet()
 gamestateClassifierNet.to(device)

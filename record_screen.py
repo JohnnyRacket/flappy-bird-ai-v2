@@ -1,10 +1,14 @@
 import cv2
 import multiprocessing
 from capture_screen import screenshot
+import win32gui
+import win32con
+import webbrowser
+
 
 def save(queue):
     number = 0
-    while "there are screenshots":
+    while 'there are screenshots':
         img = queue.get()
         if img is None:
             print('done recording')
@@ -14,6 +18,14 @@ def save(queue):
 
 
 if __name__ == '__main__':
+
+    print('start screen record')
+
+    webbrowser.get('C:/Program Files/Google/Chrome/Application/chrome.exe %s').open('https://flappybird.ee/old')
+    hwnd = win32gui.FindWindow(None, "Play Flappy Bird Online Old - Google Chrome")
+    win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
+    win32gui.MoveWindow(hwnd, -8, 0, 700, 616, True)
+    win32gui.SetForegroundWindow(hwnd)
 
     quit = False
     queue = multiprocessing.Queue()
@@ -29,5 +41,6 @@ if __name__ == '__main__':
             cv2.destroyAllWindows()
             quit = True
             queue.put(None)
+            print('finish screen record')
             
 

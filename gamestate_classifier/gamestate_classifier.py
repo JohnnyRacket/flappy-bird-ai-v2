@@ -4,7 +4,7 @@ import numpy as np
 from gamestate_classifier.GamestateNet import GamestateClassifierNet
 
 PATH = './gamestate_classifier/gamestate_classifier_net.pth'
-classes = ('playing', 'title_screen', 'game_over')
+classes = ('title_screen', 'playing', 'game_over')
 
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 x = np.linspace(0, 255, 640)
