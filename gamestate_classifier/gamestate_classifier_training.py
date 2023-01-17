@@ -22,7 +22,7 @@ num_classes = 4
 learning_rate = 1e-3
 momentum = 0.9
 batch_size = 32
-num_epochs = 1000
+num_epochs = 500
 
 
 trainset, testset = torch.utils.data.random_split(dataset, [480, 121])

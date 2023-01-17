@@ -21,8 +21,8 @@ transform = transforms.Compose(
      transforms.Normalize((0.5), (0.5))])
 
 def classify_gamestate(img):
-    conv_coord = np.dstack((img, xv, yv)).astype(np.uint8)
-    tensor = transform(conv_coord)
+    # conv_coord = np.dstack((img, xv, yv)).astype(np.uint8)
+    tensor = transform(img)
     tensor = tensor.unsqueeze(0)
     tensor = tensor.to(device)
            # turn the model to evaluate mode
