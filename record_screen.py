@@ -20,7 +20,8 @@ if __name__ == '__main__':
     multiprocessing.Process(target=save, args=(queue,)).start()
 
     while not quit:
-        img = screenshot()       
+        bbox = {'top': 92, 'left': 186, 'width': 320, 'height': 400}
+        img = screenshot(bbox)       
         queue.put(img)
 
         cv2.imshow("Record Screen", img)
