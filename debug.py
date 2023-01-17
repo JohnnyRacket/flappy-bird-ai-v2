@@ -5,6 +5,9 @@ import time
 import webbrowser
 from capture_screen import screenshot
 
+from gamestate_classifier import gamestate_classifier
+from filter_images import gamestate_classifier_filter
+
 print('start debug')
 
 webbrowser.get('C:/Program Files/Google/Chrome/Application/chrome.exe %s').open('https://flappybird.ee/old')
@@ -20,7 +23,12 @@ quit = False
 
 while not quit:
     start_time = time.time()
-    img = screenshot(game_bbox)       
+    img = screenshot(game_bbox)
+
+    img2 = gamestate_classifier_filter(img)
+    gamestate = gamestate_classifier.classify_gamestate(img2)
+
+    cv2.putText(img, str(gamestate), (10, 20), cv2.FONT_HERSHEY_SIMPLEX, .8, (200,0,255), 2, cv2.LINE_AA )
 
     cv2.putText(img, str(int(1.0 / (time.time() - start_time))), (260, 20), cv2.FONT_HERSHEY_SIMPLEX, .8, (0,0,255), 2, cv2.LINE_AA )
     
