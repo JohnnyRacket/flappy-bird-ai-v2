@@ -1,3 +1,6 @@
 *imgs*
 __pycache__
-screen_recording
+screen_recording*
+*.chkpt
+*plot.jpg
+log

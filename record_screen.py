@@ -21,10 +21,10 @@ if __name__ == '__main__':
 
     print('start screen record')
 
-    webbrowser.get('C:/Program Files/Google/Chrome/Application/chrome.exe %s').open('https://flappybird.ee/old')
+    # webbrowser.get('C:/Program Files/Google/Chrome/Application/chrome.exe %s').open('https://flappybird.ee/old')
     hwnd = win32gui.FindWindow(None, "Play Flappy Bird Online Old - Google Chrome")
     win32gui.ShowWindow(hwnd, win32con.SW_NORMAL)
-    win32gui.MoveWindow(hwnd, -8, 0, 700, 616, True)
+    win32gui.MoveWindow(hwnd, -8, 0, 980, 616, True)
     win32gui.SetForegroundWindow(hwnd)
 
     quit = False
@@ -32,7 +32,7 @@ if __name__ == '__main__':
     multiprocessing.Process(target=save, args=(queue,)).start()
 
     while not quit:
-        bbox = {'top': 92, 'left': 186, 'width': 320, 'height': 400}
+        bbox = {'top': 147, 'left': 196, 'width': 320, 'height': 420}
         img = screenshot(bbox)       
         queue.put(img)
 

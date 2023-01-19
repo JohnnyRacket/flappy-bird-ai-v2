@@ -2,7 +2,7 @@ import cv2
 import os
 import re
 import numpy as np
-from filter_images import gamestate_classifier_filter
+from filter_images import gamestate_classifier_filter, crash_classifier_filter, penalty_classifier_filter
 
 def sorted_alphanumeric(data):
     convert = lambda text: int(text) if text.isdigit() else text.lower()
@@ -21,5 +21,5 @@ imgs = load_images_from_folder(r'screen_recording')
 
 # os.chdir(r'C:\Users\John\Videos')
 for index, img in enumerate(imgs):
-    img = gamestate_classifier_filter(img)
-    cv2.imwrite((r'gamestate_classifier\gamestate_classifier_imgs\img' + str(index + 1) + '.png'), img)
+    img = penalty_classifier_filter(img)
+    cv2.imwrite((r'crash_classifier\crash_classifier_imgs\img' + str(index + 1) + '.png'), img)

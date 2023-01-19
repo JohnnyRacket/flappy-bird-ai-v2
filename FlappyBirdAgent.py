@@ -16,20 +16,20 @@ class Bird:
         self.net = BirdNet(self.state_dim, self.action_dim).float()
         self.net = self.net.to(device=self.device)
 
-        self.exploration_rate = 1
-        self.exploration_rate_decay = 0.99999975
-        self.exploration_rate_min = 0.1
+        self.exploration_rate = .1
+        self.exploration_rate_decay = 0.9999
+        self.exploration_rate_min = 0.0001
         self.curr_step = 0
 
-        self.save_every = 2e3  # no. of experiences between saving
-        self.memory = deque(maxlen=100000)
+        self.save_every = 1e4  # no. of experiences between saving
+        self.memory = deque(maxlen=10000)
         self.batch_size = 32
-        self.gamma = 0.9
+        self.gamma = 0.99
 
-        self.optimizer = torch.optim.Adam(self.net.parameters(), lr=0.00025)
+        self.optimizer = torch.optim.Adam(self.net.parameters(), lr=0.0001)
         self.loss_fn = torch.nn.SmoothL1Loss()
 
-        self.burnin = 1e3  # min. experiences before training
+        self.burnin = 5e3  # min. experiences before training
         self.learn_every = 3  # no. of experiences between updates to Q_online
         self.sync_every = 1e3  # no. of experiences between Q_target & Q_online sync
 
